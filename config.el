@@ -83,3 +83,19 @@
 
 (use-package! ii-pair)
 (use-package! ox-gfm)
+(use-package! ii-pair
+  :config
+  (setq org-babel-default-header-args:tmate
+  `((:results . "silent")
+    (:session . ,(if (getenv "CODER_WORKSPACE_NAME")
+                    (getenv "CODER_WORKSPACE_NAME")
+                  "org"))
+    (:window . "ii")
+    (:dir . ".")
+    (:socket .
+             ;; if emacs is run within tmux/tmate
+             ;; let's go ahead and use our existing socket
+             ;; otherwise we are likely wanting to launch our own
+             ,(if (getenv "TMUX")
+                 (car (split-string (getenv "TMUX") ","))
+               (symbol-value nil))))))
