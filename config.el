@@ -86,19 +86,35 @@
 (after! ii-pair
   (osc52-set-cut-function)
   (setq
+   ;; No prefix wanted, makes it messy
    org-babel-tmux-session-prefix ""
+   ;; Default to ii / pair
    org-babel-tmux-default-window-name "ii"
+   ;; We don't laurch terminals in the cloud
    org-babel-tmux-terminal "true"
+   ;; true dosen't need arguments
    org-babel-tmux-terminal-opts '(
                                   ;; "--hold"
                                   ;; "--single-instance"
                                   ;; "--start-as=normal"
                                   )
+   ;; default to targeting the 'right eye'
    org-babel-default-header-args:tmux
     '((:results . "silent")
-      (:session . "ii")
-      (:socket . nil))
-                ))
+      (:session . ,(if (getenv "CODER_WORKSPACE_NAME")
+                    (getenv "CODER_WORKSPACE_NAME")
+                  "org"))
+      (:socket .
+             ;; if emacs is run within tmux/tmate
+             ;; let's go ahead and use our existing socket
+             ;; otherwise we are likely wanting to launch our own
+             ,(if (getenv "TMUX")
+                 (car (split-string (getenv "TMUX") ","))
+               (symbol-value nil)))
+      )
+    )
+  )
+
 (after! org
   (setq org-babel-default-header-args
       '((:session . "none")
