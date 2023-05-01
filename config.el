@@ -83,3 +83,19 @@
 
 (use-package! ii-pair)
 (use-package! ox-gfm)
+(after! ii-pair
+  (osc52-set-cut-function)
+  (setq
+   org-babel-tmux-session-prefix ""
+   org-babel-tmux-default-window-name "ii"
+   org-babel-tmux-terminal "true"
+   org-babel-tmux-terminal-opts '(
+                                  ;; "--hold"
+                                  ;; "--single-instance"
+                                  ;; "--start-as=normal"
+                                  )
+   org-babel-default-header-args:tmux
+    '((:results . "silent")
+      (:session . "ii")
+      (:socket . nil))
+                ))
