@@ -99,3 +99,16 @@
       (:session . "ii")
       (:socket . nil))
                 ))
+(after! org
+  (setq org-babel-default-header-args
+      '((:session . "none")
+        (:results . "replace code")
+        (:comments . "org")
+        (:exports . "both")
+        (:eval . "never-export")
+        (:tangle . "no")))
+
+(setq org-babel-default-header-args:shell
+      '((:results . "output code verbatim replace")
+        (:wrap . "example")))
+  )
