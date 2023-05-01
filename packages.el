@@ -60,6 +60,7 @@
 (package! ob-sql-mode)
 (package! org-modern)
 (package! ox-gfm)
+(package! ob-tmux)
 
 ;;--------------
 ;; Pairing tools
