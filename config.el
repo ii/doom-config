@@ -113,6 +113,12 @@
                (symbol-value nil)))
       )
     )
+  ;; FIXME: hardcoded "default" session name should be pulled from headr args
+  (defun ob-tmux--tmux-session (org-session)
+    "Extract tmux session from ORG-SESSION string."
+    (let* ((session (car (split-string org-session ":"))))
+      (concat org-babel-tmux-session-prefix
+        (if (string-equal "" session) (assq :session org-babel-default-header-args:tmux) session))))
   )
 
 (after! org
