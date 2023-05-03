@@ -101,8 +101,8 @@
    ;; default to targeting the 'right eye'
    org-babel-default-header-args:tmux
     `((:results . "silent")
-      (:session . ,(if (getenv "HOSTNAME")
-                    (getenv "HOSTNAME")
+      (:session . ,(if (getenv "SESSION_NAME")
+                    (getenv "SESSION_NAME")
                   "org"))
       (:socket .
              ;; if emacs is run within tmux/tmate
