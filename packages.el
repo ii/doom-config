@@ -61,6 +61,15 @@
 (package! org-modern)
 (package! ox-gfm)
 (package! ob-tmux)
+(package! feature-mode)
+(package! ob-async
+  :recipe (:host github :repo "astahlman/ob-async"))
+(package! org-ai :recipe
+  (:host github
+   :branch "master"
+   :repo "rksm/org-ai"
+   :local-repo "org-ai"
+   :files ("*.el" "README.md" "snippets")))
 
 ;;--------------
 ;; Pairing tools

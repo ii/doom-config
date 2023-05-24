@@ -6,11 +6,15 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(if (getenv "GIT_AUTHOR_NAME")
+  (setq user-full-name (getenv "GIT_AUTHOR_NAME"))
+    )
+(if (getenv "GIT_AUTHOR_EMAIL")
+  (setq user-mail-address (getenv "GIT_AUTHOR_EMAIL"))
+    )
 
 (setq doom-localleader-key ",")
-(setq fancy-splash-image "~/.config/doom/banners/kubemacs.png")
+(setq fancy-splash-image (concat doom-user-dir "banners/kubemacs.png"))
 
 (setq display-line-numbers-type t)
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
