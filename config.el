@@ -134,8 +134,16 @@
         (:exports . "both")
         (:eval . "never-export")
         (:tangle . "no")))
-
-(setq org-babel-default-header-args:shell
+  (setq org-babel-default-header-args:shell
       '((:results . "output code verbatim replace")
         (:wrap . "example")))
+  (setq org-babel-default-header-args:sql-mode
+      '((:results . "replace code")
+        (:product . "postgres")
+        (:wrap . "SRC example")))
+ (setq sql-postgres-login-params
+      '((user :default "postgres")
+        (database :default "postgres")
+        (server :default "localhost")
+        (port :default 5432)))
   )
