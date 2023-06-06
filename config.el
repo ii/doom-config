@@ -146,3 +146,12 @@
         (server :default "localhost")
         (port :default 5432)))
   )
+;; Add helper functions
+
+(defun ii-ob-clear-all-results ()
+  "Clear all result blocks in current org-mode buffer."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (org-babel-next-src-block)
+      (org-babel-remove-result))))
