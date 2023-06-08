@@ -45,8 +45,16 @@
 ;; (setq doom-theme 'doom-one)
 ;; (setq doom-theme 'doom-city-lights)
 ;; (setq doom-theme 'doom-xcode)
+;; (setq doom-theme 'doom-zenburn)
+;; (setq doom-theme 'doom-vibrant)
+;; (setq doom-theme 'doom-tomorrow-night)
+;; (setq doom-theme 'doom-spacegrey)
+;; (setq doom-theme 'doom-solarized-dark)
 ;; (setq doom-theme 'doom-acario-light)
-(setq doom-theme 'doom-zenburn)
+;; (setq doom-theme 'doom-tomorrow-day)
+;; (setq doom-theme 'doom-tokyo-night)
+;; (setq doom-theme 'doom-solarized-light)
+(setq doom-theme 'doom-solarized-dark-high-contrast)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
