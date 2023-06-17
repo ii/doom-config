@@ -167,3 +167,12 @@
     (goto-char (point-min))
     (while (org-babel-next-src-block)
       (org-babel-remove-result))))
+
+;; Add Org AI src blocks
+
+(use-package! org-ai
+  :config
+    (add-hook 'org-mode-hook #'org-ai-mode)
+    (org-ai-install-yasnippets)
+    (setq org-ai-openai-api-token (getenv "OPENAI_API_TOKEN"))
+  )
