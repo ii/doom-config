@@ -54,7 +54,9 @@
 ;; (setq doom-theme 'doom-tomorrow-day)
 ;; (setq doom-theme 'doom-tokyo-night)
 ;; (setq doom-theme 'doom-solarized-light)
-(setq doom-theme 'doom-solarized-dark-high-contrast)
+;; (setq doom-theme 'doom-solarized-dark-high-contrast)
+;; (setq doom-theme 'doom-dark+)
+(setq doom-theme 'doom-dracula)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
