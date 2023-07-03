@@ -175,6 +175,24 @@
     (while (org-babel-next-src-block)
       (org-babel-remove-result))))
 
+(defun ii-ob-clear-results-region (start end)
+  "Clear all result blocks in selection region of org-mode buffer."
+  (interactive "r")
+  (save-excursion
+    (save-restriction
+      (narrow-to-region start end)
+      (goto-char 1)
+      (while (org-babel-next-src-block)
+        (org-babel-remove-result)))))
+
+(defun ii-ob-clear-results-subtree ()
+  "Clear all result blocks of subtree at point."
+  (interactive)
+  (save-excursion
+    (goto-char (point))
+      (org-mark-subtree)
+      (ii-ob-clear-results-region (point) (mark))))
+
 ;; Add Org AI src blocks
 
 (use-package! org-ai
