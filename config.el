@@ -140,6 +140,11 @@
       (concat org-babel-tmux-session-prefix
         (if (string-equal "" session) (alist-get :session org-babel-default-header-args:tmux) session))))
   )
+(after! ob-sql-mode
+        ;; make sql statements a one-liner before being sent to sql engine
+  (setq org-babel-sql-mode-pre-execute-hook
+        (lambda (body params)
+          (s-replace "\n" " " body))))
 (after! org
   (setq org-babel-default-header-args
       '((:session . "none")
@@ -178,3 +183,4 @@
     (org-ai-install-yasnippets)
     (setq org-ai-openai-api-token (getenv "OPENAI_API_TOKEN"))
   )
+
