@@ -62,6 +62,7 @@
 (package! ox-gfm)
 (package! ob-tmux)
 (package! feature-mode)
+;; (package! ob-async)
 (package! ob-async
   :recipe (:host github :repo "astahlman/ob-async"))
 (package! org-ai :recipe
