@@ -109,13 +109,19 @@
    org-babel-tmux-session-prefix ""
    ;; Default to ii / pair
    org-babel-tmux-default-window-name "ii"
-   ;; We don't laurch terminals in the cloud
-   org-babel-tmux-terminal "true"
+   ;; We don't laurch terminals in a pod
+   org-babel-tmux-terminal (cond ((getenv "KUBERNETES_PORT") "true")
+				 ; Default to Kitty for now
+				  (t "kitty")
+			       )
    ;; true dosen't need arguments
-   org-babel-tmux-terminal-opts '(
-                                  ;; "--hold"
-                                  ;; "--single-instance"
-                                  ;; "--start-as=normal"
+   org-babel-tmux-terminal-opts  (cond ((getenv "KUBERNETES_PORT") '())
+				 ; Default to Kitty optsfor now
+				       (t '(
+                                              "--hold"
+                                              "--single-instance"
+                                              "--start-as=normal"
+					    ))
                                   )
    ;; default to targeting the 'right eye'
    org-babel-default-header-args:tmux
