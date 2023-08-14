@@ -145,8 +145,24 @@
     "Extract tmux session from ORG-SESSION string."
     (let* ((session (car (split-string org-session ":"))))
       (concat org-babel-tmux-session-prefix
-        (if (string-equal "" session) (alist-get :session org-babel-default-header-args:tmux) session))))
-  )
+        (if (string-equal "" session)
+            (alist-get :session org-babel-default-header-args:tmux) session))))
+  ;; FIXME: create-session should return until tmux is ready
+  ;; Ideally we could poll like tmate
+  ;; ;; tmate sent a tmate-ready.. we could do something similar
+  ;; ;; (message "OB-TMATE: Waiting for tmate to be ready")
+  ;; ;; (ob-tmate--execute ob-session "wait" "tmate-ready")
+  ;; ))
+  ;; For now, just wait a second after the new session via some advice
+  (defun sit-around (orig-fun &rest args)
+    "Sit for a second and let tmux session get created"
+    (message "ob-tmux-create-session called with args %S" args)
+    (let ((res (apply orig-fun args)))
+    (message "ob-tmux-create-session returned %S" res)
+    (sit-for 1)
+    res))
+  (advice-add 'ob-tmux--create-session :around #'sit-around)
+)
 (after! ob-sql-mode
         ;; make sql statements a one-liner before being sent to sql engine
   (setq org-babel-sql-mode-pre-execute-hook
