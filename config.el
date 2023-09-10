@@ -98,7 +98,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-
+(add-to-list 'load-path (expand-file-name "~/.config/site-lisp"))
 (use-package! ii-pair)
 (use-package! ox-gfm)
 (use-package! ob-async)
