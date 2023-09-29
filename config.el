@@ -99,11 +99,15 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 (add-to-list 'load-path (expand-file-name "~/.config/site-lisp"))
-(use-package! ii-pair)
 (use-package! ox-gfm)
 (use-package! ob-async)
-(after! ii-pair
-  (osc52-set-cut-function)
+(after! ob-tmux
+  ;; FIXME: hardcoded "default" session name should be pulled from headr args
+  (defun ob-tmux--tmux-session (org-session)
+    "Extract tmux session from ORG-SESSION string."
+    (let* ((session (car (split-string org-session ":"))))
+      (concat org-babel-tmux-session-prefix
+        (if (string-equal "" session) (alist-get :session org-babel-default-header-args:tmux) session))))
   (setq
    ;; No prefix wanted, makes it messy
    org-babel-tmux-session-prefix ""
@@ -138,14 +142,6 @@
                (symbol-value nil)))
       )
     )
-  )
-(after! ob-tmux
-  ;; FIXME: hardcoded "default" session name should be pulled from headr args
-  (defun ob-tmux--tmux-session (org-session)
-    "Extract tmux session from ORG-SESSION string."
-    (let* ((session (car (split-string org-session ":"))))
-      (concat org-babel-tmux-session-prefix
-        (if (string-equal "" session) (alist-get :session org-babel-default-header-args:tmux) session))))
   )
 (after! ob-sql-mode
         ;; make sql statements a one-liner before being sent to sql engine
