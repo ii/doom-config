@@ -205,3 +205,7 @@
     (setq org-ai-openai-api-token (getenv "OPENAI_API_TOKEN"))
   )
 
+;; Power up Org Experience
+(after! org
+  (setq org-tags-column -80)
+  (setq org-ellipsis " ▼"))
