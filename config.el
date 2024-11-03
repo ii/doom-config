@@ -196,12 +196,7 @@
        (org-mark-subtree)
        (ii-ob-clear-results-region (point) (mark))))
 
-;; Add Org AI src blocks
-
-(use-package! org-ai
-  :config
-    (add-hook 'org-mode-hook #'org-ai-mode)
-    (org-ai-install-yasnippets)
-    (setq org-ai-openai-api-token (getenv "OPENAI_API_TOKEN"))
-  )
-
+;; Power up Org Experience
+(after! org
+  (setq org-tags-column -80)
+  (setq org-ellipsis " ▼"))
