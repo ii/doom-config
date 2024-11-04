@@ -196,6 +196,10 @@
        (org-mark-subtree)
        (ii-ob-clear-results-region (point) (mark))))
 
+;; Install fonts
+(after! nerd-icons
+  (nerd-icons-install-fonts :yes))
+
 ;; Power up Org Experience
 (after! org
   (setq org-tags-column -80)
