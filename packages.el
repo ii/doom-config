@@ -72,6 +72,9 @@
    :local-repo "org-ai"
    :files ("*.el" "README.md" "snippets")))
 
+;; Add fonts
+(package! nerd-icons)
+
 ;;--------------
 ;; Pairing tools
 ;;--------------
